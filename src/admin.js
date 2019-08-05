@@ -1,9 +1,9 @@
 import React from 'react';
 import { Row, Col } from 'antd';
-import './style/common.less';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import NavLeft from './components/NavLeft';
+import './style/common.less';
 
 class Admin extends React.Component {
   render() {
