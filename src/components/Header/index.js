@@ -8,12 +8,18 @@ class Header extends Component {
   state = {
     userName: 'xuyawen'
   }
-  componentWillMount() {
-    let data = API.getWeatherData();
-    console.log(data);
+  async componentWillMount() {
+    let { data, status } = await API.getWeatherData();
+    if (status === 200) {
+      let { data: weatherList } = data;
+      let [today, ...otherWeatherList] = weatherList;
+      let { wea: weather } = today;
+      this.setState({ weather });
+      console.log(today, otherWeatherList);
+    }
     setInterval(() => {
       let sysTime = Util.formateDate(new Date().getTime());
-      this.setState({ sysTime })
+      this.setState({ sysTime });
     }, 1000)
   }
   render() {
@@ -31,7 +37,7 @@ class Header extends Component {
           </Col>
           <Col span={20} className="weather">
             <span className="date">{ this.state.sysTime }</span>
-            <span className="weather-detail">晴转多云</span>
+            <span className="weather-detail">{ this.state.weather }</span>
           </Col>
         </Row>
       </div>
