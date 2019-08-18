@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink, HashRouter as Router } from 'react-router-dom';
 import MenuConfig from '../../config/menuConfig';
 import { Menu } from 'antd';
 import './index.less';
@@ -19,7 +20,11 @@ class NavLeft extends Component {
           </SubMenu>
         )
       }
-      return <Menu.Item title={item.title} key={item.key}>{ item.title }</Menu.Item>
+      return <Menu.Item title={item.title} key={item.key}>
+        <Router>
+          <NavLink to={item.key}>{ item.title }</NavLink>
+        </Router>
+      </Menu.Item>
     })
   }
   render() {

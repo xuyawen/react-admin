@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import API from '../../request/request';
+import API from '../../request';
 import { Row, Col, Button } from 'antd';
 import Util from '../../utils/utils'
 import './index.less';
@@ -14,8 +14,7 @@ class Header extends Component {
       let { data: weatherList } = data;
       let [today, ...otherWeatherList] = weatherList;
       let { wea: weather } = today;
-      this.setState({ weather });
-      console.log(today, otherWeatherList);
+      this.setState({ weather, otherWeatherList });
     }
     setInterval(() => {
       let sysTime = Util.formateDate(new Date().getTime());
